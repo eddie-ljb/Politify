@@ -31,8 +31,7 @@ public class JsonParserAPI {
     @SuppressWarnings("static-access")
     public JsonParserAPI() {
         this.url = URI.create("https://api.dawum.de");
-        this.proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("pro-campus.noc.fiducia.de", 8080));
-        this.httpClient = HttpClient.newBuilder().proxy(new FixedProxySelector(proxy)).connectTimeout(
+        this.httpClient = HttpClient.newBuilder().connectTimeout(
             java.time.Duration.ofSeconds(10)).build();
         this.request = HttpRequest.newBuilder().uri(url).build();
         this.objectmapper = new ObjectMapper();
