@@ -215,6 +215,7 @@ public class EigenePrognosenController implements ControllerEigenePrognosen {
         else if (parlamentID == 14) {
             parteien.add(Parteien.CDU);
             parteien.add(Parteien.BVBFW);
+            parteien.add(Parteien.PLUS_BRANDENBURG);
         }
         else {
             parteien.add(Parteien.CDU);
@@ -235,6 +236,8 @@ public class EigenePrognosenController implements ControllerEigenePrognosen {
         parteien.add(Parteien.BIW);
         parteien.add(Parteien.VOLT);
         parteien.add(Parteien.TIERSCHUTZPARTEI);
+        parteien.add(Parteien.BSW);
+        parteien.add(Parteien.WERTE_UNION);
 
         return parteien;
     }

@@ -129,7 +129,7 @@ public class JsonParserAPI {
         List<Integer> surveyIDs = new ArrayList<>();
         try {
 
-            for (Integer i = 3200; i < 3300; i++) {
+            for (Integer i = 3600; i < 4000; i++) {
                 if (jsonNode.get("Surveys").get(i.toString()).get("Date").asText() != null) {
                     surveyIDs.add(i);
                 }
@@ -257,7 +257,7 @@ public class JsonParserAPI {
 
         JsonNode jsonNodeUmfragen;
 
-        for (Integer i = parseNeuesteUmfrageID() - 200; i < 3300; i++) {
+        for (Integer i = parseNeuesteUmfrageID() - 200; i < 4000; i++) {
             try {
                 jsonNodeUmfragen = jsonNode.get("Surveys").get(i.toString());
                 Integer vergleichsWertfuerParliamentIDVergleich = jsonNodeUmfragen.get("Parliament_ID").asInt();

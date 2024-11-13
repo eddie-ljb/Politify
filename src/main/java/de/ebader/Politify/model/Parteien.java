@@ -7,7 +7,7 @@ public enum Parteien {
 
     SONSTIGE(0), CDUCSU(1), SPD(2), FDP(3), GRUENE(4), LINKE(5), PIRATEN(6), AFD(7), FW(8), NPD(9), SSW(
         10), BAYERNPARTEI(11), OEDP(12), DIEPARTEI(
-            13), BVBFW(14), TIERSCHUTZPARTEI(15), BIW(16), VOLT(18), BUNT_SAAR(21), BFTH(22), CDU(101), CSU(102);
+            13), BVBFW(14), TIERSCHUTZPARTEI(15), BIW(16), VOLT(18), BUNT_SAAR(21), BFTH(22), BSW(23), PLUS_BRANDENBURG(24), WERTE_UNION(25), CDU(101), CSU(102);
 
     private String name;
     private String shortcut;
