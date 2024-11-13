@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umfrage-Ergebnisse</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 80%;
+            margin: auto;
+        }
+        .carousel-caption {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js einbinden -->
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color: #551a8b;">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">
+            <img src="logo.PNG" alt="Logo" width="100" height="35" class="d-inline-block align-text-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/}">Startseite</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/umfragen}">Umfragen</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/prognosen}">Eigene Prognosen</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/wahlomat}">Wahl-o-mat</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Hintergrund-Informationen
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{/parlament-info}">Parlamente</a></li>
+                        <li><a class="dropdown-item" th:href="@{/parteien-info}">Parteien</a></li>
+                        <li><a class="dropdown-item" th:href="@{/aemter-info}">politische Ämter</a></li>
+                        <li><a class="dropdown-item" th:href="@{/sonstiges-info}">Sonstiges</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <!-- Auswahl des Parlaments -->
+    <div class="mb-3">
+        <label for="parliament" class="form-label">Wähle ein Parlament:</label>
+        <select class="form-select" id="parliament">
+            <option value="0">Bundestag</option>
+            <option value="1">Landtag Baden-Württemberg</option>
+            <option value="2">Landtag Bayern</option>
+            <option value="3">Ageordnetenhaus Berlin</option>
+            <option value="4">Landtag Brandenburg</option>
+            <option value="5">Bürgerschaft Bremen</option>
+            <option value="6">Bürgerschaft Hamburg</option>
+            <option value="7">Landtag Hessen</option>
+            <option value="8">Landtag Mecklenburg-Vorpommern</option>
+            <option value="9">Landtag Niedersachsen</option>
+            <option value="10">Landtag Nordrhein-Westfalen (NRW)</option>
+            <option value="11">Landtag Rheinland-Pfalz</option>
+            <option value="12">Landtag Saarland</option>
+            <option value="13">Landtag Sachsen</option>
+            <option value="14">Landtag Sachsen-Anhalt</option>
+            <option value="15">Landtag Schleswig-Holstein</option>
+            <option value="16">Landtag Thüringen</option>
+            <option value="17">EU-Parlament (deutscher Teil)</option>
+        </select>
+    </div>
+
+
+    <!-- Auswahl der Umfrage-ID -->
+        <div class="mb-3">
+            <label for="pollId" class="form-label">Wähle eine Umfrage-ID:</label>
+            <select class="form-select" id="pollId">
+                <option value="Umfrage1">Umfrage 1</option>
+                <option value="Umfrage2">Umfrage 2</option>
+                <option value="Umfrage3">Umfrage 3</option>
+            </select>
+        </div>
+
+    <button type="button" class="btn btn-primary" id="showResultsBtn">Ergebnisse anzeigen</button>
+    </form>
+
+    <hr>
+
+    <!-- Umfrage-Details -->
+    <div id="surveyDetails" class="mt-4">
+        <!-- Kompakte Darstellung der Umfrage-Details -->
+        <div class="card p-3">
+            <h5 class="card-title">Umfrage-Details</h5>
+            <div class="row">
+                <!-- Parlament -->
+                <div class="col-sm-6">
+                    <p><strong>Parlament:</strong> <span id="parlamentName"></span></p>
+                </div>
+                <!-- Datum -->
+                <div class="col-sm-6">
+                    <p><strong>Datum:</strong> <span id="surveyDate"></span></p>
+                </div>
+                <!-- Befragte Personen -->
+                <div class="col-sm-6">
+                    <p><strong>Stichprobe:</strong> <span id="sampleSize"></span></p>
+                </div>
+                <!-- Institut -->
+                <div class="col-sm-6">
+                    <p><strong>Institut:</strong> <span id="surveyInstitute"></span></p>
+                </div>
+                <!-- Auftraggeber -->
+                <div class="col-sm-6">
+                    <p><strong>Auftraggeber:</strong> <span id="surveyTasker"></span></p>
+                </div>
+                <!-- Methode -->
+                <div class="col-sm-6">
+                    <p><strong>Methode:</strong> <span id="surveyMethod"></span></p>
+                </div>
+            </div>
+
+            <!-- Logo des Instituts -->
+            <div class="mt-3">
+                <img id="surveyInstituteLogo" src="" alt="Institut Logo" class="img-fluid" style="max-width: 150px;">
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Ergebnisse der Umfrage -->
+    <div>
+        <!-- Tabelle für Umfrageergebnisse -->
+        <table id="resultsTable" class="table table-bordered mt-3" style="display:none;">
+            <thead>
+            <tr>
+
+            </tr>
+            </thead>
+            <tbody id="resultsTableBody">
+            <!-- Dynamische Zeilen werden hier eingefügt -->
+            </tbody>
+        </table>
+
+        <!-- Das Canvas für das Diagramm -->
+        <canvas id="pollResultsChart" width="400" height="200"></canvas>
+    </div>
+
+    <hr>
+        <!-- Diagramm zur Sitzverteilung -->
+        <div class="chart-container mt-5">
+            <img src="parliament-chart.png" alt="Parliament Chart" class="img-fluid">
+        </div>
+
+        <!-- Mögliche Koalitionen -->
+        <h4 class="mt-5">Mögliche Koalitionen</h4>
+        <ul>
+            <li>Koalition A + B (55%)</li>
+            <li>Koalition B + C + D (60%)</li>
+            <li>Koalition A + C (50%)</li>
+        </ul>
+
+    <hr>
+    </div>
+</div>
+
+<script src="jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+<script src="umfrageIDFetchen.js"></script>
+<script src="umfrageErgebnisseFetchen.js"></script>
+<script src="umfrageDetailsFetchen.js"></script>
+</body>
+</html>

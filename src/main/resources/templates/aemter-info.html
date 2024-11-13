@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Politische Ämter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        .container {
+            margin-top: 40px;
+        }
+        .card {
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .info-section {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .info-title {
+            color: #551a8b;
+        }
+        .amt-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .highlight {
+            color: #551a8b;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color: #551a8b;">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">
+            <img src="logo.PNG" alt="Logo" width="100" height="35" class="d-inline-block align-text-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/}">Startseite</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/umfragen}">Umfragen</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/prognosen}">Eigene Prognosen</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/wahlomat}">Wahl-o-mat</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Hintergrund-Informationen
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{/parlament-info}">Parlamente</a></li>
+                        <li><a class="dropdown-item" th:href="@{/parteien-info}">Parteien</a></li>
+                        <li><a class="dropdown-item" th:href="@{/aemter-info}">politische Ämter</a></li>
+                        <li><a class="dropdown-item" th:href="@{/sonstiges-info}">Sonstiges</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>>
+
+
+<div class="container">
+    <h2 class="text-center info-title">Wähle ein Amt</h2>
+    <div class="row g-4">
+        <!-- Ämter-Auswahl -->
+        <div class="col-md-4">
+            <div class="card" onclick="showAmtInfo('Bundeskanzler')">
+                <img src="bundeskanzler.jpg" class="card-img-top amt-img" alt="Bundeskanzler">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Bundeskanzler</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" onclick="showAmtInfo('Bundespräsident')">
+                <img src="bundespraesident.jpg" class="card-img-top amt-img" alt="Bundespräsident">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Bundespräsident</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Amt-Informationen -->
+    <div id="amt-info" class="mt-5 info-section d-none">
+        <h3 class="info-title" id="amt-name">Bundeskanzler</h3>
+        <p><span class="highlight">Aufgabe:</span> Leitung der Bundesregierung</p>
+        <p><span class="highlight">Amtsinhaber:</span> Olaf Scholz</p>
+        <p><span class="highlight">Wahl:</span> Durch den Bundestag</p>
+    </div>
+</div>
+
+<script>
+    function showAmtInfo(amt) {
+        const infoDiv = document.getElementById('amt-info');
+        const amtName = document.getElementById('amt-name');
+
+        if (amt === 'Bundeskanzler') {
+            amtName.textContent = 'Bundeskanzler';
+        } else if (amt === 'Bundespräsident') {
+            amtName.textContent = 'Bundespräsident';
+        }
+        infoDiv.classList.remove('d-none');
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -461,7 +461,7 @@ public class UmfragenErhaltenController implements ControllerUmfragenParsen {
             case "Niedersachsen" :
                 sperrklausel = 5.0;
                 break;
-            case "Nordrhein-Westfalen" :
+            case "Nordrhein-Westfalen (NRW)" :
                 sperrklausel = 5.0;
                 break;
             case "Rheinland-Pfalz" :
@@ -532,7 +532,7 @@ public class UmfragenErhaltenController implements ControllerUmfragenParsen {
             case "Niedersachsen" :
                 anzahlAnSitzen = 146;
                 break;
-            case "Nordrhein-Westfalen" :
+            case "Nordrhein-Westfalen (NRW)" :
                 anzahlAnSitzen = 195;
                 break;
             case "Rheinland-Pfalz" :
